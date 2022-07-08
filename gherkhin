@@ -1,0 +1,60 @@
+1 - #Usuario e senha valido
+
+########################
+# Sem email com senha valida
+# Com email invalido Ex: aaaaa
+# Com email não cadastrado na base teste@aaa.com
+# Com email valido treinamento@treinamento.com
+# Sem senha
+# Com senha invalida 11111
+# Com senha validada corretamente 12345
+
+
+Scenario: usuario e senha válidos
+ Given eu tenho usuario e senha validos
+  When eu faço login
+  Then eu verifico se loguei com sucesso
+
+
+Scenario:  login sem e-mail com senha valida
+ Given eu tenho uma senha valida, mas nao tenho e-mail
+  When eu faço login
+  Then eu verifico se aparece a mensagem de e-mail requerido
+
+
+  Scenario: login com e-mail invalido Ex: aaaa
+   Given eu tenho um e-mail invalido
+    When eu faço login
+    Then eu verifico se aparece a mensagem de e-mail invalido
+
+
+Scenario: login com e-mail não cadastrado na base
+Given eu tenho um e-mail não cadastrado
+When eu faço login
+Then eu verifico se aparece a mensagem de autenticação falhada
+
+Scenario: login com e-mail e senha cadastrados na base
+ Given eu tenho um e-mail e senha cadastrados na base
+  When eu faço login
+  Then eu verifico se login foi feito com sucesso
+
+
+Scenario: login com e-mail valido e sem senha
+ Given eu tenho e-mail valido e nao tenho senha
+  When eu faço login
+  Then eu verifico se aparece a mensagem de senha requerida
+
+Scenario: login com e-mail valido e senha invalida
+ Given eu tenho e-mail valido e senha invalida
+  When eu faço login
+  Then eu verifico se aparece a mensagem de autenticação falhada
+
+
+Scenario: login com e-mail valido e senha valida
+ Given eu tenho e-mail valido e senha valida
+  When eu faço login
+  Then eu verifico se o login foi feito com sucesso
+
+
+
+
